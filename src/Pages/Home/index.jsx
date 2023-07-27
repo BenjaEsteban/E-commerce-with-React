@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react"
 import Layout from "../../Components/Layout"
 import Card from "../../Components/Card"
+import ProductDetail from "../../Components/ProductDetail"
 
 function Home() {
     const [items, setItems] = useState(null)
 
     useEffect(() => {
-        //Resepción de API con los productos
+        //Recepción de API con los productos
         fetch('https://api.escuelajs.co/api/v1/products')
             //Transformar la respuesta en JSON
             .then(response => response.json())
@@ -24,7 +25,7 @@ function Home() {
                         ))
                     }
                 </div>
-
+                <ProductDetail></ProductDetail>
             </Layout>
         </>
     )
