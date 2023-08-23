@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base:'https://benjaesteban.github.io/E-commerce-with-React'
+  base:'https://github.com/BenjaEsteban/E-commerce-with-React/',
 })
