@@ -8,6 +8,13 @@ export const ShoppingCartProvider = ({ children }) => {
     // Get productos
     const [items, setItems] = useState(null)
 
+    // State from filter products
+    const [filteredItems, setFilterItems] = useState(null)
+
+    // Get productos by title
+    const [searchByTitle, setSearchByTitle] = useState(null)
+
+
     useEffect(() => {
         //Recepción de API con los productos
         fetch('https://api.escuelajs.co/api/v1/products')
@@ -16,10 +23,18 @@ export const ShoppingCartProvider = ({ children }) => {
             .then(data => setItems(data))
     }, [])
 
-    // Get productos by title
-    const [searchByTitle, setSearchByTitle] = useState(null)
+    console.log(items)
 
-    console.log(searchByTitle)
+    const filteredItemsByTitle = (items, searchByTitle) => {
+        return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+    }
+
+    useEffect(() => {
+        if (searchByTitle){
+            setFilterItems(filteredItemsByTitle(items, searchByTitle))
+        }
+    }, [items, searchByTitle])
+
 
     //Shoping Card . Increment quantity
     const [count, setCount] = useState(0)
@@ -49,6 +64,7 @@ export const ShoppingCartProvider = ({ children }) => {
             setItems,
             searchByTitle,
             setSearchByTitle,
+            filteredItems,
             count,
             setCount,
             openProductDetail,
