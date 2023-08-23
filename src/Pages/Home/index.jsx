@@ -7,7 +7,6 @@ import { ShoppingCartContext } from "../../Context"
 function Home() {
     const context = useContext(ShoppingCartContext)
     const renderView = () => {
-        if (context.searchByTitle?.length > 0) {
             if (context.filteredItems?.length > 0){
                 return (
                     context.filteredItems?.map(item => (
@@ -17,17 +16,9 @@ function Home() {
             }
             else {
                 return (
-                    <div>We don't have any product with this name. Please try again with another name. Thank you.</div>
+                    <div>No existen :(</div>
                 )
             }
-            
-        } else {
-            return (
-                context.items?.map(item => (
-                    <Card key={item.id} data={item} />
-                ))
-            )
-        }
     }
 
     return (
